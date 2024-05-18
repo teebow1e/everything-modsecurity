@@ -9,7 +9,7 @@ Some scripts and information when working with ModSecurity WAF (libmodsecurity).
 More information about this can be found [here](https://github.com/owasp-modsecurity/ModSecurity?tab=readme-ov-file#what-is-the-difference-between-this-project-and-the-old-modsecurity-v2xx).
 
 ## Script auto installation
-This script will attempt to install NGINX + ModSecurity + OWASP CRS at once.
+This script will attempt to install NGINX + ModSecurity + OWASP CRS at once.  
 Some noteworthy information:
 - Audit log will be saved at `/var/log/modsec/modsec_audit.json` - 1 file only
 - Config file is located at `/etc/nginx/modsec/`
