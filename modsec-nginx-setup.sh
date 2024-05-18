@@ -96,14 +96,14 @@ service nginx restart
 read -p "$(echo -e "${green}Do you want to test the ModSecurity WAF now? (y/n): ${reset}")" test_option
 
 if [[ $test_option == "y" || $test_option == "Y" ]]; then
-xss_test=$(curl -s 'http://localhost/?a=whoami;')
+  xss_test=$(curl -s 'http://localhost/?a=whoami;')
   echo "$xss_test"
-  if [[ "403 Forbidden" == *$xss_test* ]] && [ "${#xss_test}" != '0' ]; then
-    echo -e "${y}[403 Forbidden]: Malicious requests blocked. Installation finished!${reset}";
+  if [[ $xss_test == *"403 Forbidden"* ]] && [ "${#xss_test}" != '0' ]; then
+    echo -e "${y}[403 Forbidden]: Malicious requests blocked.${reset}"
+    echo -e "${green}[+] Installation completed. Enjoy!${reset}"
   else
-    echo -e "${red}Something probably gone wrong, please check journalctl of NGINX!${reset}";
+    echo -e "${red}Something probably gone wrong, please check journalctl of NGINX!${reset}"
   fi
-
 else
   echo -e "${green}[+] Please run the following command to test ModSecurity rules:${reset}"
   echo -e "curl 'http://localhost:80/?a=whoami;'"; $reset
